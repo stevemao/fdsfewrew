@@ -1,0 +1,17 @@
+-- Writing environment files prevents reproducible builds.
+write-ghc-environment-files: never
+
+-- O1 by default. You can override this locally via:
+--   cabal configure --disable-optimization
+optimization: 1
+
+-- Local packages.
+packages:
+   examples/
+   lib/amazonka/
+   lib/amazonka-core/
+   lib/amazonka-test/
+   lib/amazonka-s3-encryption/
+
+optional-packages:
+   lib/services/*/

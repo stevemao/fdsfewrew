@@ -1,0 +1,10 @@
+{
+    "libraryName": "amazonka-elastictranscoder",
+    "typeOverrides": {
+        "ReadJobResponse": {
+            "requiredFields": [
+                "Job"
+            ]
+        }
+    }
+}

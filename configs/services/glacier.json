@@ -1,0 +1,32 @@
+{
+    "libraryName": "amazonka-glacier",
+    "operationPlugins": {
+        "*": [
+            "Request.glacierVersionHeader (Core._serviceVersion defaultService)"
+        ]
+    },
+    "typeOverrides": {
+        "InitiateMultipartUploadInput": {
+            "requiredFields": [
+                "partSize"
+            ]
+        },
+        "InitiateMultipartUploadOutput": {
+            "requiredFields": [
+                "uploadId"
+            ]
+        },
+        "UploadMultipartPartInput": {
+            "requiredFields": [
+                "range",
+                "checksum"
+            ]
+        },
+        "CompleteMultipartUploadInput": {
+            "requiredFields": [
+                "archiveSize",
+                "checksum"
+            ]
+        }
+    }
+}

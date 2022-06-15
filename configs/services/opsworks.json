@@ -1,0 +1,17 @@
+{
+    "libraryName": "amazonka-opsworks",
+    "typeOverrides": {
+        "OptionalValue": {
+            "replacedBy": {
+                "name": "Prelude.Maybe Prelude.Text",
+                "underive": []
+            }
+        },
+        "SslConfiguration": {
+            "optionalFields": [
+                "Certificate",
+                "PrivateKey"
+            ]
+        }
+    }
+}

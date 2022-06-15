@@ -1,0 +1,55 @@
+# OSX
+.DS_Store
+
+# Emacs/Vim
+*~
+*#
+.#*
+.*.sw[a-z]
+*.un~
+*.org
+.projectile
+
+# Nix
+result*
+
+# Certificates
+*.pem
+*.key
+*.secret
+*.sec
+*.asc
+
+# Archives
+*.zip
+*.gz
+*.tar
+*.bzip2
+*.xz
+
+# Profiling
+*.prof
+*.aux
+*.hp
+*.ps
+*.pdf
+
+# Cabal
+cabal.project.local*
+/dist-newstyle
+dist*
+.ghc*
+
+# Curl
+.cookies
+*.log
+
+# Bazel
+.bazelrc.local
+/bazel-*
+
+# Direnv
+.envrc.local
+
+# Stack
+.stack-work

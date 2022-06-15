@@ -1,0 +1,69 @@
+load("@rules_haskell//haskell:defs.bzl", "haskell_library", "haskell_test")
+
+# rule generated from amazonka-sts/amazonka-sts.cabal by gazelle_cabal
+haskell_library(
+    name = "amazonka-sts",
+    srcs = [
+        "gen/Amazonka/STS.hs",
+        "gen/Amazonka/STS/AssumeRole.hs",
+        "gen/Amazonka/STS/AssumeRoleWithSAML.hs",
+        "gen/Amazonka/STS/AssumeRoleWithWebIdentity.hs",
+        "gen/Amazonka/STS/DecodeAuthorizationMessage.hs",
+        "gen/Amazonka/STS/GetAccessKeyInfo.hs",
+        "gen/Amazonka/STS/GetCallerIdentity.hs",
+        "gen/Amazonka/STS/GetFederationToken.hs",
+        "gen/Amazonka/STS/GetSessionToken.hs",
+        "gen/Amazonka/STS/Lens.hs",
+        "gen/Amazonka/STS/Types.hs",
+        "gen/Amazonka/STS/Types/AssumedRoleUser.hs",
+        "gen/Amazonka/STS/Types/FederatedUser.hs",
+        "gen/Amazonka/STS/Types/PolicyDescriptorType.hs",
+        "gen/Amazonka/STS/Types/Tag.hs",
+        "gen/Amazonka/STS/Waiters.hs",
+    ],
+    compiler_flags = [
+        "-Wall",
+        "-fwarn-incomplete-uni-patterns",
+        "-fwarn-incomplete-record-updates",
+        "-funbox-strict-fields",
+        "-DVERSION_amazonka_sts=\"2.0\"",
+    ],
+    hidden_modules = [],
+    version = "2.0",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//lib/amazonka-core",
+        "@stackage//:base",
+    ],
+)
+
+# rule generated from amazonka-sts/amazonka-sts.cabal by gazelle_cabal
+haskell_test(
+    name = "amazonka-sts-test",
+    srcs = [
+        "test/Main.hs",
+        "test/Test/Amazonka/Gen/STS.hs",
+        "test/Test/Amazonka/STS.hs",
+        "test/Test/Amazonka/STS/Internal.hs",
+    ],
+    compiler_flags = [
+        "-Wall",
+        "-threaded",
+        "-DVERSION_amazonka_sts=\"2.0\"",
+    ],
+    version = "2.0",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":amazonka-sts",
+        "//lib/amazonka-core",
+        "//lib/amazonka-test",
+        "@stackage//:base",
+        "@stackage//:bytestring",
+        "@stackage//:case-insensitive",
+        "@stackage//:tasty",
+        "@stackage//:tasty-hunit",
+        "@stackage//:text",
+        "@stackage//:time",
+        "@stackage//:unordered-containers",
+    ],
+)
