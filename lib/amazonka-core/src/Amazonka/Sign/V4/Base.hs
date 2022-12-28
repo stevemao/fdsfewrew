@@ -125,6 +125,8 @@ type NormalisedHeaders = Tag "normalised-headers" [(ByteString, ByteString)]
 
 type Method = Tag "method" ByteString
 
+type CanonicalPath = Tag "canonical-path" ByteString
+
 type Path = Tag "path" ByteString
 
 type Signature = Tag "signature" ByteString
@@ -196,7 +198,7 @@ signMetadata a r ts presign digest rq =
     sts = stringToSign ts scope crq
     cred = credential (_authAccessKeyId a) scope
     scope = credentialScope svc end ts
-    crq = canonicalRequest method path digest query chs shs
+    crq = canonicalRequest method cpath digest query chs shs
 
     chs = canonicalHeaders headers
     shs = signedHeaders headers
@@ -205,9 +207,18 @@ signMetadata a r ts presign digest rq =
     end = _serviceEndpoint svc r
     method = Tag . toBS $ _requestMethod rq
     path = escapedPath rq
+    cpath = canonicalPath rq
 
     svc = _requestService rq
 
+canonicalPath :: Request a -> CanonicalPath
+canonicalPath r = Tag $
+  case _serviceAbbrev (_requestService r) of
+    "S3" -> toBS (escapePath path)
+    _ -> toBS (escapePathTwice (collapsePath path))
+  where
+    path = _requestPath r
+  
 algorithm :: ByteString
 algorithm = "AWS4-HMAC-SHA256"
 
@@ -246,7 +257,7 @@ encode = toBS . escapePath . rawPath
 
 canonicalRequest ::
   Method ->
-  Path ->
+  CanonicalPath ->
   Hash ->
   CanonicalQuery ->
   CanonicalHeaders ->
@@ -257,7 +268,7 @@ canonicalRequest meth path digest query chs shs =
     BS8.intercalate
       "\n"
       [ toBS meth,
-        encode (toBS path),
+        toBS path,
         toBS query,
         toBS chs,
         toBS shs,
